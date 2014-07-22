@@ -9,6 +9,8 @@ Installation
 This package can be installed via composer
 
    https://packagist.org/packages/jitb/pomm-module
+   
+   see others at : https://packagist.org/users/Jack%20in%20the%20Box/
 
 Configuration
 -------------
