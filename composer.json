@@ -30,5 +30,5 @@
             "PommModule\\": "src/"
         }
     },
-    "bin": ["bin/go-pomm"]
+    "bin": ["go-pomm"]
 }
