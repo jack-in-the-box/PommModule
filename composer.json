@@ -26,16 +26,12 @@
     },
     "bin": ["bin/pomm.php"],
     "autoload": {
-        "psr-4": { 
-            "PommProject\\Cli\\": "src/"
-        }
-    },
-    "classmap": [
-        "Module.php"
-    ],
-    "autoload-dev": {
-        "psr-4": { 
+        "psr-4": {
+            "PommProject\\Cli\\": "src/",
             "PommProject\\Cli\\Test\\": "test/"
-        }
-    }
+        },
+        "classmap": [
+            "Module.php"
+        ]
+    },
 }
