@@ -7,7 +7,7 @@
  * @author  Martin Supiot <msupiot@jack.fr>
  */
 
-namespace PommProject\Cli\Service;
+namespace PommProject\PommModule\Service;
 
 use RuntimeException;
 use Zend\ServiceManager\FactoryInterface;

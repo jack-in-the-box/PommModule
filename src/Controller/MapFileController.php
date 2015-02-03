@@ -7,7 +7,7 @@
  * @author  Martin Supiot <msupiot@jack.fr>
  */
 
-namespace PommProject\Cli\Controller;
+namespace PommProject\PommModule\Controller;
 
 use Zend\ModuleManager\Feature\ConsoleUsageProviderInterface;
 use Zend\Console\Adapter\AdapterInterface as Console;
@@ -38,7 +38,7 @@ class MapFileController extends AbstractCliPommController implements ConsoleUsag
             throw new RuntimeException('Cannot obtain console adapter. Are we running in a console?');
         }
 
-        $pommService = $this->getServiceLocator()->get('PommProject\Cli\Service\PommServiceFactory');
+        $pommService = $this->getServiceLocator()->get('PommProject\PommModule\Service\PommServiceFactory');
         $options = $this->getToolOptions($request);
 
         $tool = new CreateBaseMapTool($options);

@@ -10,13 +10,13 @@
 return array(
     'service_manager' => array(
         'factories' =>  array(
-            'PommProject\Cli\Service\PommServiceFactory' => 'PommProject\Cli\Service\PommServiceFactory',
+            'PommProject\PommModule\Service\PommServiceFactory' => 'PommProject\PommModule\Service\PommServiceFactory',
         ),
     ),
     'controllers' => [
         'invokables' => [
-            'mapfile' => 'PommProject\Cli\Controller\MapFileController',
-            'scanmapfile' => 'PommProject\Cli\Controller\ScanMapFileController',
+            'mapfile' => 'PommProject\PommModule\Controller\MapFileController',
+            'scanmapfile' => 'PommProject\PommModule\Controller\ScanMapFileController',
         ],
     ],
     'console' => array(

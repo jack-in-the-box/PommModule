@@ -27,8 +27,8 @@
     "bin": ["bin/pomm.php"],
     "autoload": {
         "psr-4": {
-            "PommProject\\Cli\\": "src/",
-            "PommProject\\Cli\\Test\\": "test/"
+            "PommProject\\PommModule\\": "src/",
+            "PommProject\\PommModule\\Test\\": "test/"
         },
         "classmap": [
             "Module.php"

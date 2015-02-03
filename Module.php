@@ -7,7 +7,7 @@
  * @author  Martin Supiot <msupiot@jack.fr>
  */
 
-namespace PommProject\Cli;
+namespace PommProject\PommModule;
 
 use Zend\ModuleManager\Feature\InitProviderInterface;
 use Zend\ModuleManager\Feature\BootstrapListenerInterface;
@@ -18,7 +18,7 @@ use Zend\Loader\StandardAutoloader;
 use Zend\Authentication\Storage\Session as SessionStorage;
 use Zend\Authentication\AuthenticationService;
 
-use PommProject\Cli\Service\Authentication\PommAuthenticationAdapter;
+use PommProject\PommModule\Service\Authentication\PommAuthenticationAdapter;
 
 /**
  * Integrate of Pomm projects with ZF2 applications
