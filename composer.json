@@ -25,9 +25,15 @@
         "zendframework/zendframework": "~2.3",
         "zendframework/zend-console": "2.3.4"
     },
+    "bin": ["bin/pomm.php"],
     "autoload": {
-        "psr-0": {
-            "PommModule\\": "src/"
+        "psr-4": { 
+            "PommProject\\ZfCli\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": { 
+            "PommProject\\ZfCli\\Test\\": "sources/tests"
         }
     }
 }
