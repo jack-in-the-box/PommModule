@@ -7,7 +7,7 @@
  * @author  Martin Supiot <msupiot@jack.fr>
  */
 
-namespace PommModule\Service;
+namespace PommProject\Cli\Service;
 
 use Zend\ServiceManager\ServiceLocatorInterface;
 
@@ -35,6 +35,6 @@ class PommServiceFactory extends AbstractServiceFactory
      */
     public function getOptionsClass()
     {
-        return 'PommModule\Options\Configuration';
+        return 'PommProject\Cli\Options\Configuration';
     }
 }

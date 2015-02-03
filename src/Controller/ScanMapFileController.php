@@ -7,7 +7,7 @@
  * @author  Martin Supiot <msupiot@jack.fr>
  */
 
-namespace PommModule\Controller;
+namespace PommProject\Cli\Controller;
 
 use Zend\ModuleManager\Feature\ConsoleUsageProviderInterface;
 use Zend\Console\Adapter\AdapterInterface as Console;
@@ -20,12 +20,12 @@ use Pomm\Tools\CreateBaseMapTool;
 
 /**
  * Console controller
- * Generate defined Pomm base class
+ * Generate all Pomm base class
  */
-class MapFileController extends AbstractCliPommController implements ConsoleUsageProviderInterface
+class ScanMapFileController extends AbstractCliPommController implements ConsoleUsageProviderInterface
 {
     /**
-     * Create a mapfile
+     * Scan to generate all mapfiles
      */
     public function generateAction()
     {
@@ -38,14 +38,14 @@ class MapFileController extends AbstractCliPommController implements ConsoleUsag
             throw new RuntimeException('Cannot obtain console adapter. Are we running in a console?');
         }
 
-        $pommService = $this->getServiceLocator()->get('PommModule\Service\PommServiceFactory');
+        $pommService = $this->getServiceLocator()->get('PommProject\Cli\Service\PommServiceFactory');
         $options = $this->getToolOptions($request);
 
-        $tool = new CreateBaseMapTool($options);
+        $tool = new ScanSchemaTool($options);
         $tool->execute();
         $this->outputStack($tool->getOutputStack(), $console);
-
-        return 'Generation done for ' . $options['database']->getName() . '/' . $options['schema'] . '/' . $options['schema'] . "\n";
+        
+        return 'Generation done for all tables of ' . $options['database']->getName() . '/' . $options['schema'] . "\n";
     }
 
     /**
@@ -58,11 +58,10 @@ class MapFileController extends AbstractCliPommController implements ConsoleUsag
     {
         return array(
             // Describe available commands
-            'mapfile-create <table> --database= --schema= --prefix-path= [--extends=] [--output-level=] [--prefix-namespace=]' 
-            => 'Generates the Map file from a given table.',
+            'mapfile-scan --database= --schema= --prefix-path= [--extends=] [--output-level=] [--prefix-namespace=]'
+            => 'Generates the Map file from all tables.',
 
             // Describe expected parameters
-            array( '<table>',            'The table name to generate the map file from'),
             array( '--database',         'The name of the database to use (default: the first one)'),
             array( '--schema',           'The schema name to scan for tables'),
             array( '--prefix-path',      'The directory where the Model tree is located'),
@@ -70,18 +69,5 @@ class MapFileController extends AbstractCliPommController implements ConsoleUsag
             array( '--output-level',     '(optional) The minimum log output level: DEBUG, INFO, WARNING, ERROR, CRITICAL (default: INFO)'),
             array( '--prefix-namespace', '(optional) The namespace prefix for the model namespace (default: none)'),
         );
-    }
-
-    /**
-     * Complete the parent options tool
-     * 
-     * @param  ConsoleRequest $request The console
-     * @return array                   An array of parameters
-     */
-    protected function getToolOptions(ConsoleRequest $request)
-    {
-        $options = parent::getToolOptions($request);
-        $options['table'] = $request->getParam('table');
-        return $options;
     }
 }

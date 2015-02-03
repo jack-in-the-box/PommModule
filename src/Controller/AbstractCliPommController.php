@@ -7,10 +7,7 @@
  * @author  Martin Supiot <msupiot@jack.fr>
  */
 
-namespace PommModule\Controller;
-
-use Pomm\Tools\OutputLine;
-use Pomm\Tools\OutputLineStack;
+namespace PommProject\Cli\Controller;
 
 use Zend\Console\Adapter\AdapterInterface as Console;
 use Zend\Console\Request as ConsoleRequest;
@@ -31,7 +28,7 @@ abstract class AbstractCliPommController extends AbstractActionController
     protected function getToolOptions(ConsoleRequest $request)
     {
         $options = array();
-        $pommService = $this->getServiceLocator()->get('PommModule\Service\PommServiceFactory');
+        $pommService = $this->getServiceLocator()->get('PommProject\Cli\Service\PommServiceFactory');
 
         $options['database'] = $request->getParam('database', '') == '' ? $pommService->getDatabase() : $pommService->getDatabase($request->getParam('database'));
         $options['prefix_dir'] = $request->getParam('prefix-path', getcwd());
