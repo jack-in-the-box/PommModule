@@ -30,7 +30,9 @@ abstract class AbstractCliPommController extends AbstractActionController
         $options = array();
         $pommService = $this->getServiceLocator()->get('PommProject\PommModule\Service\PommServiceFactory');
 
-        $options['database'] = $request->getParam('database', '') == '' ? $pommService->getDatabase() : $pommService->getDatabase($request->getParam('database'));
+        // TODO : Remove hard code database name
+        $options['database-name'] = $request->getParam('database', '') == '' ? 'pstudio2' : $request->getParam('database');
+        $options['database'] = $pommService->getBuilder($options['database-name']);
         $options['prefix_dir'] = $request->getParam('prefix-path', getcwd());
         if (!is_null($request->getParam('prefix-namespace', null))) {
             $options['prefix_namespace'] = $request->getParam('prefix-namespace');
@@ -38,35 +40,6 @@ abstract class AbstractCliPommController extends AbstractActionController
         $options['schema'] = $request->getParam('schema', 'public');
         $options['extends'] = $request->getParam('extends', 'BaseObjectMap');
 
-        $outputLevel = $request->getParam('output-level');
-        if (in_array(
-            strtoupper($outputLevel),
-            array('', 'DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL')
-        )) {
-            $options['output_level'] = $outputLevel != ''
-                ? constant('\Pomm\Tools\OutputLine::LEVEL_'.strtoupper($outputLevel))
-                : OutputLine::LEVEL_INFO;
-        } else {
-            throw new \Exception(
-                "Invalid log output level: {$request->getParam('output-level')}"
-                ."\nAvailable levels: DEBUG, INFO (default), WARNING, ERROR, CRITICAL"
-            );
-        }
-
         return $options;
-    }
-
-    /**
-     * Output the Pomm generation log
-     * 
-     * @param  OutputLineStack $stack   The log
-     * @param  Console         $console The console
-     * @return void
-     */
-    protected function outputStack(OutputLineStack $stack, Console $console)
-    {
-        foreach ($stack as $outputLine) {
-            $console->writeLine((string) $outputLine);
-        }
     }
 }

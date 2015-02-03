@@ -13,11 +13,6 @@ use Zend\ModuleManager\Feature\ConsoleUsageProviderInterface;
 use Zend\Console\Adapter\AdapterInterface as Console;
 use Zend\Console\Request as ConsoleRequest;
 
-use Pomm\Tools\OutputLine;
-use Pomm\Tools\OutputLineStack;
-use Pomm\Tools\ScanSchemaTool;
-use Pomm\Tools\CreateBaseMapTool;
-
 /**
  * Console controller
  * Generate defined Pomm base class
@@ -29,6 +24,8 @@ class MapFileController extends AbstractCliPommController implements ConsoleUsag
      */
     public function generateAction()
     {
+        echo 'ok';
+        die;
         $request = $this->getRequest();
 
         // Make sure that we are running in a console and the user has not tricked our
@@ -41,11 +38,9 @@ class MapFileController extends AbstractCliPommController implements ConsoleUsag
         $pommService = $this->getServiceLocator()->get('PommProject\PommModule\Service\PommServiceFactory');
         $options = $this->getToolOptions($request);
 
-        $tool = new CreateBaseMapTool($options);
-        $tool->execute();
-        $this->outputStack($tool->getOutputStack(), $console);
+        // TODO
 
-        return 'Generation done for ' . $options['database']->getName() . '/' . $options['schema'] . '/' . $options['schema'] . "\n";
+        return 'Generation done for ' . $options['database-name'] . '/' . $options['schema'] . "\n";
     }
 
     /**

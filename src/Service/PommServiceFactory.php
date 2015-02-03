@@ -11,8 +11,7 @@ namespace PommProject\PommModule\Service;
 
 use Zend\ServiceManager\ServiceLocatorInterface;
 
-use Pomm\Connection\Database as PommDatabase;
-use Pomm\Service as PommService;
+use PommProject\Foundation\Pomm as PommService;
 
 /**
  * Initiate a connection to a database
