@@ -19,7 +19,6 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=5.4.4",
-        "pomm-project/cli": "2.0.*@dev",
         "pomm-project/model-manager": "2.0.*@dev",
         "pomm-project/foundation": "2.0.*@dev",
         "zendframework/zendframework": "~2.3",
