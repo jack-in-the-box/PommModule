@@ -10,16 +10,13 @@
 return array(
     'service_manager' => array(
         'factories' =>  array(
-            'PommModule\Service\PommServiceFactory' => 'PommModule\Service\PommServiceFactory',
-        ),
-        'invokables' => array(
-            'pomm.authentication.default' => 'Zend\Authentication\AuthenticationService',
+            'PommProject\Cli\Service\PommServiceFactory' => 'PommProject\Cli\Service\PommServiceFactory',
         ),
     ),
     'controllers' => [
         'invokables' => [
-            'mapfile' => 'PommModule\Controller\MapFileController',
-            'scanmapfile' => 'PommModule\Controller\ScanMapFileController',
+            'mapfile' => 'PommProject\Cli\Controller\MapFileController',
+            'scanmapfile' => 'PommProject\Cli\Controller\ScanMapFileController',
         ],
     ],
     'console' => array(

@@ -27,12 +27,15 @@
     "bin": ["bin/pomm.php"],
     "autoload": {
         "psr-4": { 
-            "PommProject\\ZfCli\\": "src/"
+            "PommProject\\Cli\\": "src/"
         }
     },
+    "classmap": [
+        "Module.php"
+    ],
     "autoload-dev": {
         "psr-4": { 
-            "PommProject\\ZfCli\\Test\\": "sources/tests"
+            "PommProject\\Cli\\Test\\": "test/"
         }
     }
 }
