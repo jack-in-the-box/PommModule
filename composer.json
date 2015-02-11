@@ -31,7 +31,7 @@
     "autoload": {
         "psr-4": {
             "PommProject\\PommModule\\": "src/",
-            "PommProject\\PommModule\\Test\\": "test/"
+            "PommProjectTest\\PommModule\\": "test/"
         },
         "classmap": [
             "Module.php"

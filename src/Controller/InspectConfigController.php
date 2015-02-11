@@ -32,8 +32,7 @@ class InspectConfigController extends AbstractCliPommController implements Conso
     {
         return array(
             // Describe available commands
-            'inspect-config'
-            => 'Get configuration of a database.',
+            'inspect-config' => 'Get configuration of a database.',
         );
     }
 

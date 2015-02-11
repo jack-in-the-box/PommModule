@@ -24,8 +24,6 @@ class MapFileController extends AbstractCliPommController implements ConsoleUsag
      */
     public function generateAction()
     {
-        echo 'ok';
-        die;
         $request = $this->getRequest();
 
         // Make sure that we are running in a console and the user has not tricked our

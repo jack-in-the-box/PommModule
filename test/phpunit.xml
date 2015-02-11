@@ -11,7 +11,7 @@
          syntaxCheck="false">
     <testsuites>
         <testsuite name="commontest">
-            <directory>./</directory>
+            <directory>./Controller</directory>
         </testsuite>
     </testsuites>
 </phpunit>

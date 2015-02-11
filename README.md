@@ -30,7 +30,7 @@ Inspection
 
 ### Config
 
-Inspect the configuration : vendor/bin/pomm.php inspect-config
+Inspect the configuration :     
 
 ### Database
 
@@ -70,3 +70,8 @@ Generate relation, structure and models for all relations of a schema : generate
 ### All for a given database
 
 Generate structure, model and entity file for all relations of all schemas in a database : generate-database-all pstudio2
+
+Tests
+-----
+
+vendor/bin/phpunit test
