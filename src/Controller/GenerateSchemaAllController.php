@@ -70,9 +70,9 @@ class GenerateSchemaAllController extends AbstractCliPommController implements C
         // Get request and params
         $request = $this->getRequest();
         $options = $this->getToolOptions($request);
+        $parameterList = array_merge($this->getParameters(), $options);
 
         // Get relation list
-        $parameterList = array_merge($this->getParameters(), $options);
         $relationList = $this->getSession()->getInspector()->getSchemaRelations($this->fetchSchemaOid());
 
         foreach ($relationList as $relation) {

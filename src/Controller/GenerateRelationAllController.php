@@ -73,7 +73,6 @@ class GenerateRelationAllController extends AbstractCliPommController implements
         // Get request and params
         $request = $this->getRequest();
         $options = $this->getToolOptions($request);
-
         $parameterList = array_merge($this->getParameters(), $options);
 
         $this->updateOutput(

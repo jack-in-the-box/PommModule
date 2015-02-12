@@ -70,7 +70,8 @@ class GenerateRelationStructureController extends AbstractCliPommController impl
         // Get request and params
         $request = $this->getRequest();
         $options = $this->getToolOptions($request);
-
+        $parameterList = array_merge($this->getParameters(), $options);
+        
         // Compute options
         $this->filename = $this->getFileName($this->getConfigName(), null, 'AutoStructure');
         $this->namespace = $this->getNamespace($this->getConfigName(), 'AutoStructure');
@@ -82,7 +83,7 @@ class GenerateRelationStructureController extends AbstractCliPommController impl
                 $this->getRelation(),
                 $this->filename,
                 $this->namespace
-            ))->generate(new ParameterHolder())
+            ))->generate(new ParameterHolder($parameterList))
         );
 
         return 'Relation structure generation for ' . $this->getConfigName() . '/' . $this->getSchema() . "\n";

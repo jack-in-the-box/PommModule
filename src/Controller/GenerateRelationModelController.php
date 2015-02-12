@@ -70,6 +70,7 @@ class GenerateRelationModelController extends AbstractCliPommController implemen
         // Get request and params
         $request = $this->getRequest();
         $options = $this->getToolOptions($request);
+        $parameterList = array_merge($this->getParameters(), $options);
 
         // Compute options
         $this->filename = $this->getFileName($this->getConfigName(), 'Model');
@@ -82,7 +83,7 @@ class GenerateRelationModelController extends AbstractCliPommController implemen
                 $this->getRelation(),
                 $this->filename,
                 $this->namespace
-            ))->generate(new ParameterHolder(['force' => $this->options['force']]))
+            ))->generate(new ParameterHolder($parameterList))
         );
 
         return 'Relation model generation for ' . $this->getConfigName() . '/' . $this->getSchema() . "\n";

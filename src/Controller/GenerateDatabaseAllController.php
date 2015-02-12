@@ -69,7 +69,9 @@ class GenerateDatabaseAllController extends AbstractCliPommController implements
         // Get request and params
         $request = $this->getRequest();
         $options = $this->getToolOptions($request);
-
+        $parameterList = array_merge($this->getParameters(), $options);
+var_dump($parameterList);
+die;
         // Get schemas list
         $schemaList = $this->getSession()->getInspector()->getSchemas();
 
@@ -78,7 +80,6 @@ class GenerateDatabaseAllController extends AbstractCliPommController implements
             $this->setSchema($schema['name']);
 
             // Get relation list
-            $parameterList = array_merge($this->getParameters(), $options);
             $relationList = $this->getSession()->getInspector()->getSchemaRelations($this->fetchSchemaOid());
 
             // TODO : Refactor!

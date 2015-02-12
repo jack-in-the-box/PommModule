@@ -70,6 +70,7 @@ class GenerateEntityController extends AbstractCliPommController implements Cons
         // Get request and params
         $request = $this->getRequest();
         $options = $this->getToolOptions($request);
+        $parameterList = array_merge($this->getParameters(), $options);
 
         $this->updateOutput(
             (new EntityGenerator(
@@ -79,7 +80,7 @@ class GenerateEntityController extends AbstractCliPommController implements Cons
                 $this->getFileName($this->getConfigName()),
                 $this->getNamespace($this->getConfigName()),
                 $options['flexible-container']
-            ))->generate(new ParameterHolder(['force' => $options['force']]))
+            ))->generate(new ParameterHolder($parameterList))
         );
 
         return 'Entity generation for ' . $this->getConfigName() . '/' . $this->getSchema() . "\n";
