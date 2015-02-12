@@ -76,7 +76,7 @@ abstract class AbstractCliPommController extends AbstractActionController implem
         $this->options['prefix-dir'] = $request->getParam('prefix-dir', 'module/Database/src/');
         $this->options['prefix-ns'] = $request->getParam('prefix-ns', 'Database');
         $this->options['force'] = $request->getParam('force', null);
-        $this->options['flexible-container'] = $request->getParam('flexible-container', null);
+        $this->options['flexible-container'] = $request->getParam('flexible-container', 'PommProject\ModelManager\Model\FlexibleEntity');
 
         return $this->options;
     }
@@ -152,10 +152,42 @@ abstract class AbstractCliPommController extends AbstractActionController implem
             [
                 ltrim($this->options['prefix-dir'], '/'),
                 str_replace('\\', '/', trim($this->options['prefix-ns'], '\\')),
-                Inflector::studlyCaps($this->getConfigName()),
+                Inflector::studlyCaps($configName),
                 Inflector::studlyCaps(sprintf("%s_schema", $this->getSchema())),
                 $extraDir,
                 sprintf("%s%s.php", Inflector::studlyCaps($this->getRelation()), $fileSuffix)
+            ];
+
+        return join('/', array_filter(
+            $elements,
+            function ($val) {
+                return $val != null;
+            }
+        ));
+    }
+
+    /**
+     * getPathFile
+     *
+     * Create path file from parameters and namespace.
+     *
+     * @access protected
+     * @param  string $configName
+     * @param  string $fileSuffix
+     * @param  string $extraDir
+     * @param  string $fileName
+     * @return string
+     */
+    protected function getPathFile($configName, $fileName, $fileSuffix = '', $extraDir = '')
+    {
+        $elements =
+            [
+                ltrim($this->options['prefix-dir'], '/'),
+                str_replace('\\', '/', trim($this->options['prefix-ns'], '\\')),
+                Inflector::studlyCaps($configName),
+                Inflector::studlyCaps(sprintf("%s_schema", $this->getSchema())),
+                $extraDir,
+                sprintf("%s%s.php", Inflector::studlyCaps($fileName), $fileSuffix)
             ];
 
         return join('/', array_filter(
@@ -181,7 +213,7 @@ abstract class AbstractCliPommController extends AbstractActionController implem
         $elements =
             [
                 $this->options['prefix-ns'],
-                Inflector::studlyCaps($this->getConfigName()),
+                Inflector::studlyCaps($configName),
                 Inflector::studlyCaps(sprintf("%s_schema", $this->getSchema())),
                 $extraNs
             ];

@@ -66,11 +66,11 @@ class GenerateSchemaAllController extends AbstractCliPommController implements C
     public function generateAction()
     {
         $this->checkConsole();
-
+        $result = '';
+        
         // Get request and params
         $request = $this->getRequest();
         $options = $this->getToolOptions($request);
-        $parameterList = array_merge($this->getParameters(), $options);
 
         // Get relation list
         $relationList = $this->getSession()->getInspector()->getSchemaRelations($this->fetchSchemaOid());
@@ -78,6 +78,8 @@ class GenerateSchemaAllController extends AbstractCliPommController implements C
         foreach ($relationList as $relation) {
 
             $this->setRelation($relation['name']);
+            $parameterList = array_merge($this->getParameters(), $options);
+
             $this->updateOutput(
                 (new StructureGenerator(
                     $this->getSession(),
@@ -108,14 +110,16 @@ class GenerateSchemaAllController extends AbstractCliPommController implements C
                         $this->getSession(),
                         $this->getSchema(),
                         $relation['name'],
-                        $filename,
+                        $this->getPathFile($this->getConfigName(), $this->getRelation()),
                         $this->getNamespace($this->getConfigName()),
                         $options['flexible-container']
                     ))->generate(new ParameterHolder($parameterList))
                 );
             }
+
+            $result .= 'Schema generation for ' . $this->getConfigName() . '/' . $this->getSchema() . '/' . $this->getRelation() . "\n";
         }
 
-        return 'Schema generation for ' . $this->getConfigName() . '/' . $this->getSchema() . "\n";
+        return $result;
     }
 }

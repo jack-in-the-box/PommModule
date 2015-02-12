@@ -65,19 +65,19 @@ class GenerateDatabaseAllController extends AbstractCliPommController implements
     public function generateAction()
     {
         $this->checkConsole();
+        $result = '';
 
         // Get request and params
         $request = $this->getRequest();
         $options = $this->getToolOptions($request);
-        $parameterList = array_merge($this->getParameters(), $options);
-var_dump($parameterList);
-die;
+
         // Get schemas list
         $schemaList = $this->getSession()->getInspector()->getSchemas();
 
         foreach ($schemaList as $schema) {
 
             $this->setSchema($schema['name']);
+            $parameterList = array_merge($this->getParameters(), $options);
 
             // Get relation list
             $relationList = $this->getSession()->getInspector()->getSchemaRelations($this->fetchSchemaOid());
@@ -86,6 +86,8 @@ die;
             foreach ($relationList as $relation) {
 
                 $this->setRelation($relation['name']);
+                $parameterList = array_merge($this->getParameters(), $options);
+
                 $this->updateOutput(
                     (new StructureGenerator(
                         $this->getSession(),
@@ -116,15 +118,17 @@ die;
                             $this->getSession(),
                             $this->getSchema(),
                             $relation['name'],
-                            $filename,
+                            $this->getPathFile($this->getConfigName(), $this->getRelation()),
                             $this->getNamespace($this->getConfigName()),
                             $options['flexible-container']
                         ))->generate(new ParameterHolder($parameterList))
                     );
                 }
+
+                $result .= 'Database generation for ' . $this->getConfigName() . '/' . $this->getSchema() . '/' . $this->getRelation() . "\n";
             }
         }
 
-        return 'Schema generation for ' . $this->getConfigName() . '/' . $this->getSchema() . "\n";
+        return $result;
     }
 }

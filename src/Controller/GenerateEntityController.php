@@ -77,7 +77,7 @@ class GenerateEntityController extends AbstractCliPommController implements Cons
                 $this->getSession(),
                 $this->getSchema(),
                 $this->getRelation(),
-                $this->getFileName($this->getConfigName()),
+                $this->getPathFile($this->getConfigName(), $this->getRelation()),
                 $this->getNamespace($this->getConfigName()),
                 $options['flexible-container']
             ))->generate(new ParameterHolder($parameterList))
