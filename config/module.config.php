@@ -8,14 +8,6 @@
  */
 
 return array(
-    'pomm' => array(
-        'databases' => array(
-            'pstudio2' => array(
-                'dsn' => 'pgsql://pstudio2:pstudio2@192.168.42.11:5432/pstudio2',
-                'name' => 'pstudio2',
-            ),
-        ),
-    ),
     'service_manager' => array(
         'factories' =>  array(
             'PommProject\PommModule\Service\PommServiceFactory' => 'PommProject\PommModule\Service\PommServiceFactory',
