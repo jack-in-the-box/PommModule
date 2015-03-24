@@ -30,7 +30,7 @@ Inspection
 
 ### Config
 
-Inspect the configuration : vendor/bin/pomm.php inspect-database
+Inspect the configuration : vendor/bin/pomm.php inspect-config
 
 ### Database
 
